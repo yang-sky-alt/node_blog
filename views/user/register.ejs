@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/views/user/css/register.css" />
+  <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+  <title>注册</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="forms-container">
+      <div class="signin-signup">
+        <form action="#" class="sign-up-form" id="sign-up-form">
+          <h2 class="title">注册</h2>
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input type="text" placeholder="账号" name="username" autocomplete="off" />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-envelope"></i>
+            <input type="email" placeholder="邮箱" name="mail" autocomplete="off" />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" placeholder="密码" name="password" autocomplete="off" />
+          </div>
+          <input type="submit" class="btn" value="注 册" />
+          <p class="social-text">或者通过以下平台注册</p>
+          <div class="social-media">
+            <a href="#" class="social-icon">
+              <i class="fab fa-weixin"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-qq"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-alipay"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="panels-container">
+      <div class="panel left-panel">
+        <div class="content">
+          <h3>已经是我们自己人了吗?</h3>
+          <p>
+            那好兄弟,你直接点击登录按钮,登录到我们这优秀的系统里!!
+          </p>
+          <a class="btn transparent" id="sign-up-btn" href="/login">
+            登录
+          </a>
+        </div>
+        <img src="/views/user/images/register.svg" class="image" alt="" />
+      </div>
+    </div>
+  </div>
+  <script src="/node_modules/jquery/dist/jquery.js"></script>
+  <script>
+    
+    $(function () {
+      $('#sign-up-form').on('submit', function (e) {
+        // 取消表单的默认提交事件
+        e.preventDefault()
+        // 当取消了表单的默认提交行为之后，手动发起Ajax请求，提交表单
+        $.ajax({
+          url: '/register',
+          data: $('#sign-up-form').serialize(),
+          type: 'POST',
+          dataType: 'json',
+          success: function (result) {
+            if (result.status !== 200) {
+              return alert(result.msg)
+            }
+            alert (result.msg)
+          }
+        })
+      })
+    })
+  </script>
+</body>
+
+</html>
